@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
-  namespace: namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: mysql
 spec:
@@ -18,7 +18,7 @@ apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
   name: mysql
-  namespace: namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   serviceName: "mysql"
   replicas: 1
