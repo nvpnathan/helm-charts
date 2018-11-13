@@ -2,7 +2,7 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ include "planespotter.fullname" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: planespotter
   labels:
     app.kubernetes.io/name: {{ include "planespotter.name" . }}
     helm.sh/chart: {{ include "planespotter.chart" . }}

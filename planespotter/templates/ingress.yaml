@@ -5,7 +5,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
-  namespace: {{ .Values.namespace }}
+  namespace: planespotter
   labels:
     app.kubernetes.io/name: {{ include "planespotter.name" . }}
     helm.sh/chart: {{ include "planespotter.chart" . }}

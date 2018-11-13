@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "planespotter.fullname" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: planespotter
   labels:
     app.kubernetes.io/name: {{ include "planespotter.name" . }}
     helm.sh/chart: {{ include "planespotter.chart" . }}
