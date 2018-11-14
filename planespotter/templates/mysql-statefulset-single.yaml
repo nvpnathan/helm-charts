@@ -30,7 +30,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql
-        image: mysql:5.6
+        image: "{{ .Values.mysql_image.repository }}:{{ .Values.mysql_image.tag }}"
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
