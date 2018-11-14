@@ -38,7 +38,7 @@ Most every programming language and operating system has its own package manager
 
 `pks create-cluster my-cluster -e my-cluster.corp.local -n 2 -p medium`
 
-- Note: that it will take *25-30 minutes* to create the cluster
+- **Note:** that it will take *25-30 minutes* to create the cluster
 
 <details><summary>Create Cluster</summary>
 <img src="../images/pks-create-cluster.png">
