@@ -19,43 +19,103 @@ Most every programming language and operating system has its own package manager
 ### Prereq's 
 
 - ServiceAccount and ClusterRoleBinding for **Tiller**
-- Command line tool `helm` 
-
-### Prepare the K8s cluster for Tiller
+- Command line tool `helm` & `kubectl`
+- Kubernetes Cluster
 
 1.0 SSH to the cli-vm
 
 <details><summary>Screenshot 1.0</summary>
-<img src="images/ssh-cli-vm.png">
+<img src="../images/ssh-cli-vm.png">
 </details>
 
-1.1 Pull down the Helm Chart lab repo with `git clone`
+#### Create a K8s cluster
+
+`pks login -a pks.corp.local -u pksadmin -p VMware1! -k`
+
+<details><summary>PKS Login</summary>
+<img src="../images/pks-api-login.png">
+</details>
+
+`pks create-cluster my-cluster -e my-cluster.corp.local -n 2 -p medium`
+
+<details><summary>Create Cluster</summary>
+<img src="../images/pks-create-cluster.png">
+</details>
+
+`watch pks cluster my-cluster`
+
+- Watch the for the **Last Action State: Succeeded**
+
+`pks get-credentials my-cluster`
+
+<details><summary>Watch PKS Create</summary>
+<img src="../images/watch-pks-create-cluster.png">
+</details>
+
+### Prepare the K8s cluster for Tiller
+
+1.1 Install the `helm` binary on your jumpbox
+
+`curl -O https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz && tar -zxvf helm-v2.11.0-linux-amd64.tar.gz && mv linux-amd64/helm /usr/local/bin/helm`
+
+<details><summary>Install Helm</summary>
+<img src="../images/install-helm.png">
+</details>
+
+1.2 Pull down the Helm Chart lab repo with `git clone`
 
 `git clone https://github.com/nvpnathan/helm-charts.git`
 
-1.2 Navigate into the helm-charts directory
+1.3 Navigate into the helm-charts directory
 
 `cd helm-charts/planespotter/tiller`
 
-1.3 Apply the Tiller ServiceAccount and ClusterRoleBinding, along with a default storage class for MySQL to your K8s cluster
+1.4 Apply the Tiller ServiceAccount and ClusterRoleBinding, along with a default storage class for MySQL to your K8s cluster
 
-`kubectl apply -f rbac-config.yaml`
-`kubectl apply -f default-sc.yaml`
+`kubectl apply -f rbac-config.yaml default-sc.yaml`
 
-1.4 Navigate to the **helm chart** for Planespotter
+<details><summary>Screenshot 1.4</summary>
+<img src="../images/create-sa-crb-sc.png">
+</details>
 
-`cd ..`
+1.5 Navigate to the **helm chart** directory
 
-1.5 Install the `helm` binary on your jumpbox
+`cd ../../`
 
 1.6 Install **tiller** into your K8s cluster with the service account created in 1.3
 
 `helm init --service-account tiller`
 
+<details><summary>Screenshot 1.6</summary>
+<img src="../images/helm-init.png">
+</details>
+
 1.7 Verify Tiller is running in your **kube-system** namespace
 
-`kubectl get pods -n kube-system`
+`kubectl get pods -n kube-system | grep tiller`
 
-1.8 Install the **Planespotter** application with `helm`
+<details><summary>Screenshot 1.7</summary>
+<img src="../images/tiller-pod.png">
+</details>
 
-`helm install planespotter ./planespotter`
+1.8 Create the namespace for the Planespotter Helm Chart
+
+`kubectl create ns planespotter`
+
+<details><summary>Screenshot 1.8</summary>
+<img src="../images/planespotter-ns.png">
+</details>
+
+1.9 Install the **Planespotter** application with `helm`
+
+`helm install --name planespotter ./planespotter`
+
+1.10 Switch to the **planespotter ns**
+
+- Fix `kubens` (symbolic link is broken)
+
+    - `rm  /usr/local/bin/kubns`
+
+    - `ln -s /opt/kubectx/kubens /usr/local/bin/kubens`
+
+`kubens planespotter`

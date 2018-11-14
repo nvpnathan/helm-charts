@@ -48,6 +48,15 @@ spec:
           mountPath: /bin/mysql-start.sh
           subPath: mysql-start.sh
         command: ["/bin/mysql-start.sh"]
+      volumes:
+      - name: mysql-config
+        configMap:
+          defaultMode: 0700
+          name: mysql-config-map
+      - name: mysql-start
+        configMap:
+          defaultMode: 0700
+          name: mysql-start-map
   volumeClaimTemplates:
   - metadata:
       name: mysql-vol
