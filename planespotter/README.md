@@ -46,13 +46,14 @@ Most every programming language and operating system has its own package manager
 
 `watch pks cluster my-cluster`
 
-- Watch the for the **Last Action State: Succeeded**
-
 <details><summary>Watch PKS Create</summary>
 <img src="../images/watch-pks-create-cluster.png">
 </details>
 
-`pks get-credentials my-cluster`
+- Watch the for the **Last Action State: Succeeded**
+- Once the cluster has successfully deployed you can authenticate to the cluster
+
+    -`pks get-credentials my-cluster`
 
 ### Prepare the K8s cluster for Tiller
 
