@@ -68,7 +68,7 @@ metadata:
   namespace: planespotter
 spec:
   rules:
-  - host: planespotter-api.vballin.com
+  - host: planespotter-api.ing.corp.local
     http:
       paths:
       - backend:
