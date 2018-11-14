@@ -38,6 +38,8 @@ Most every programming language and operating system has its own package manager
 
 `pks create-cluster my-cluster -e my-cluster.corp.local -n 2 -p medium`
 
+- Note: that it will take *25-30 minutes* to create the cluster
+
 <details><summary>Create Cluster</summary>
 <img src="../images/pks-create-cluster.png">
 </details>
@@ -72,7 +74,9 @@ Most every programming language and operating system has its own package manager
 
 1.4 Apply the Tiller ServiceAccount and ClusterRoleBinding, along with a default storage class for MySQL to your K8s cluster
 
-`kubectl apply -f rbac-config.yaml default-sc.yaml`
+`kubectl apply -f rbac-config.yaml`
+
+`kubectl apply -f default-sc.yaml`
 
 <details><summary>Screenshot 1.4</summary>
 <img src="../images/create-sa-crb-sc.png">
@@ -114,7 +118,7 @@ Most every programming language and operating system has its own package manager
 
 - Fix `kubens` (symbolic link is broken)
 
-    - `rm  /usr/local/bin/kubns`
+    - `rm  /usr/local/bin/kubens`
 
     - `ln -s /opt/kubectx/kubens /usr/local/bin/kubens`
 
