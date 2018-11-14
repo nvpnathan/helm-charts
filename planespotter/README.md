@@ -119,3 +119,25 @@ Most every programming language and operating system has its own package manager
     - `ln -s /opt/kubectx/kubens /usr/local/bin/kubens`
 
 `kubens planespotter`
+
+1.11 Create a **Wildcard DNS record** for the Ingress Controller for the cluster
+
+<details><summary>Screenshot 1.11</summary>
+<img src="../images/wildcard-dns.png">
+</details>
+
+1.12 Verify Planespotter is running
+
+`kubectl get pods`
+
+<details><summary>Screenshot 1.12</summary>
+<img src="../images/planespotter-pods.png">
+</details>
+
+1.13 Verify you can browse to the Planespotter app in a web browser
+
+`http://planespotter.ing.corp.local`
+
+<details><summary>Screenshot 1.12</summary>
+<img src="../images/planespotter-web.png">
+</details>
