@@ -46,11 +46,11 @@ Most every programming language and operating system has its own package manager
 
 - Watch the for the **Last Action State: Succeeded**
 
-`pks get-credentials my-cluster`
-
 <details><summary>Watch PKS Create</summary>
 <img src="../images/watch-pks-create-cluster.png">
 </details>
+
+`pks get-credentials my-cluster`
 
 ### Prepare the K8s cluster for Tiller
 
