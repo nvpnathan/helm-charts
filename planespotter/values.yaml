@@ -27,7 +27,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - planespotter.corp.local
+    - planespotter.ing.corp.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
