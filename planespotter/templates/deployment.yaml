@@ -24,6 +24,9 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.frontend_image.repository }}:{{ .Values.frontend_image.tag }}"
           imagePullPolicy: {{ .Values.frontend_image.pullPolicy }}
+          env:
+          - name: PLANESPOTTER_API_ENDPOINT
+            value: planespotter-svc
           ports:
             - name: http
               containerPort: 80
