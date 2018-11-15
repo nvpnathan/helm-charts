@@ -125,7 +125,7 @@ Most every programming language and operating system has its own package manager
 
 `kubens planespotter`
 
-1.11 Create a **Wildcard DNS record** for the Ingress Controller for the cluster
+1.11 On the control center (Windows Jumpbox) create a **Wildcard DNS record** for the Ingress Controller for the cluster
 
 <details><summary>Screenshot 1.11</summary>
 <img src="../images/wildcard-dns.png">
