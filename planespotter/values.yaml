@@ -10,7 +10,22 @@ replicaCount: 1
 
 frontend_image:
   repository: nvpnathan/planespotter-frontend
-  tag: v1
+  tag: 55ce7a5
+  pullPolicy: IfNotPresent
+
+appserver_image:
+  repository: nvpnathan/planespotter-app-server
+  tag: 313c946
+  pullPolicy: IfNotPresent
+
+adsb_image:
+  repository: harbor.vballin.com/planespotter/adsb-sync
+  tag: 7b088e6
+  pullPolicy: IfNotPresent
+
+mysql_image:
+  repository: harbor.vballin.com/core/mysql
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: "frontend"
@@ -27,7 +42,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   # path: /
   hosts:
-    - planespotter.ing.corp.local
+    - planespotter.ing.vballin.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -52,12 +67,7 @@ tolerations: []
 affinity: {}
 
 # MySQL Database configuration
-
 storage_class:
   default: thin
 
-mysql_image:
-  repository: mysql
-  tag: 5.6
-  pullPolicy: IfNotPresent
 
